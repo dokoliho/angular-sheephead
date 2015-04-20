@@ -16,6 +16,11 @@ app.controller('SessionController', function($scope, Session) {
     $scope.sessions.push(newSession);
   }
 
+  $scope.remove = function(session) {
+    $scope.sessions.splice($scope.sessions.indexOf(session), 1);
+  }
+
+
 })
 
 

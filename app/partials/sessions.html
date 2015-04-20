@@ -14,5 +14,9 @@ Spieler 4: <input ng-model="player4">
   <tr ng-repeat="session in sessions | orderBy: date">
     <td>{{session.date()}}</td>
     <td>{{session.players()}}</td>
+    <td>
+      <a href="" ng-click="removePlayer(player)"><i class="glyphicon glyphicon-pencil"></i></a>
+      <a href="" ng-click="remove(session)"><i class="glyphicon glyphicon-remove"></i></a>
+    </td>
   </tr>
 </table>	
