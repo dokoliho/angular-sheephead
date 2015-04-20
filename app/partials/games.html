@@ -1,0 +1,11 @@
+<h3>Spiele</h3>
+<table class="table">
+ 	<tr>
+ 	  <th>Art</th>
+ 	  <th>Gewonnen</th>
+ 	</tr>
+  <tr ng-repeat="game in games | orderBy: id">
+    <td>{{game.kind}}</td>
+    <td>{{game.won}}</td>
+  </tr>
+</table>	
