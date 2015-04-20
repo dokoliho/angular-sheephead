@@ -9,7 +9,7 @@ app.config(function ($routeProvider) {
       controller: 'SessionController',
       templateUrl: 'partials/sessions.html'
     })
-    .when('/game',
+    .when('/sessions/:idSession',
     {
       controller: 'GameController',
       templateUrl: 'partials/games.html'

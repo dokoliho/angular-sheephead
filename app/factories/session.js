@@ -17,7 +17,8 @@ app.factory("Session", function($http) {
 
      return {
      	players: function() { return _players; },
-     	date: function() { return _date; }
+     	date: function() { return _date; },
+     	id: function() { return _id; }
      } 
   };
 
