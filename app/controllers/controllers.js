@@ -1,15 +1,22 @@
 
 app.controller('SessionController', function($scope, Session) {
-  $scope.sessions =  Session.sessions();
-  return {
- /*     getSessions: function() {
-        return sessions;
-      }, */
-      addSession: function() {
-        Session.add([$scope.player1, $scope.player2, $scope.player3, $scope.player4]);
-      }
-    };
-  })
+  $scope.player1 = "1";
+  $scope.player2 = "2";
+  $scope.player3 = "3";
+  $scope.player4 = "4";
+  $scope.sessions =  [];
+
+  $scope.add = function() {
+    var newSession = new Session(
+      $scope.sessions.length+1, 
+      $scope.player1,
+      $scope.player2,
+      $scope.player3,
+      $scope.player4);
+    $scope.sessions.push(newSession);
+  }
+
+})
 
 
 app.controller('GameController', function($scope) {

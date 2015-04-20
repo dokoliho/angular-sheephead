@@ -4,7 +4,7 @@ Spieler 1: <input ng-model="player1">
 Spieler 2: <input ng-model="player2">
 Spieler 3: <input ng-model="player3">
 Spieler 4: <input ng-model="player4">
-<button class="btn" ng-click="add">Hinzufügen</button>
+<button class="btn btn-default" ng-click="add()">Hinzufügen</button>
 
 <table class="table">
  	<tr>
@@ -12,7 +12,7 @@ Spieler 4: <input ng-model="player4">
  	  <th>Spieler</th>
  	</tr>
   <tr ng-repeat="session in sessions | orderBy: date">
-    <td>{{session.date}}</td>
-    <td>{{session.players}}</td>
+    <td>{{session.date()}}</td>
+    <td>{{session.players()}}</td>
   </tr>
 </table>	
