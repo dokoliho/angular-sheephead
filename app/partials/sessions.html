@@ -1,23 +1,54 @@
-<h3>Schafkopfrunden</h3>
-
-Spieler 1: <input ng-model="player1">
-Spieler 2: <input ng-model="player2">
-Spieler 3: <input ng-model="player3">
-Spieler 4: <input ng-model="player4">
-<button class="btn btn-default" ng-click="write()">Hinzufügen</button>
-
-<table class="table">
- 	<tr>
- 	  <th>Datum</th>
- 	  <th>Spieler</th>
- 	  <th></th>
- 	</tr>
-  <tr ng-repeat="session in sessions | orderBy: date">
-    <td>{{session.date()}}</td>
-    <td>{{session.players()}}</td>
-    <td>
-      <a href="#/sessions/{{ session.id() }}"><i class="glyphicon glyphicon-pencil"></i></a>
-      <a href="" ng-click="remove(session)"><i class="glyphicon glyphicon-remove"></i></a>
-    </td>
-  </tr>
-</table>	
+<div class="row">
+	<form class="" role="form">
+    	<div class="form-group">
+        	<div class="col-sm-3">
+            	<label class="" for="pl1">Spieler 1</label>
+              	<input class="form-control" id="pl1" ng-model="player1">
+           	</div>
+        </div>
+        <div class="form-group">
+        	<div class="col-sm-3">
+               	<label class="" for="pl2">Spieler 2</label>
+                <input class="form-control" id="pl2" ng-model="player2">
+            </div>
+         </div>
+         <div class="form-group">
+           	<div class="col-sm-3">
+              	<label class="" for="pl3">Spieler 3</label>
+               	<input class="form-control" id="pl3" ng-model="player3">
+          	</div>
+       	</div>
+        <div class="form-group">
+           	<div class="col-sm-3">
+              	<label class="" for="pl4">Spieler 4</label>
+        		<input class="form-control" id="pl4" ng-model="player4">
+  			</div>
+        </div>
+   	</form>
+</div>
+<div class="row top-buffer">
+    <div class="col-sm-3">
+    	<button class="btn btn-default" ng-click="write()">Hinzufügen</button>
+    </div>
+</div>
+<div class="table top-buffer">
+	<table class="table table-striped">
+    	<tbody>
+        	<tr class="row">
+            	<th class="col-sm-2">Datum</th>
+               	<th class="col-sm-8">Spieler</th>
+               	<th class="col-sm-2"></th>
+            </tr>
+          	<tr class="row" ng-repeat="session in sessions | orderBy: date">
+            	<td class="col-sm-2">{{session.printDate()}}</td>
+           		<td class="col-sm-8">{{session.printPlayers()}}</td>
+               	<td class="col-sm-2">
+               		<a class="" href="#/sessions/{{ session.id() }}">
+      				<i class="glyphicon glyphicon-pencil"></i></a>
+					<a class="" href="" ng-click="remove(session)">
+      				<i class="glyphicon glyphicon-remove"></i></a>
+      			</td>
+           	</tr>
+     	</tbody>
+   	</table>
+</div>

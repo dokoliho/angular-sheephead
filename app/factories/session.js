@@ -17,7 +17,9 @@ app.factory("Session", function($http) {
 
      return {
      	players: function() { return _players; },
+      printPlayers: function() { return _players.toString(); },
      	date: function() { return _date; },
+      printDate: function() { return _date.toLocaleDateString(); },
      	id: function() { return _id; }
      } 
   };
