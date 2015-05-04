@@ -18,7 +18,7 @@ app.controller('SessionController', function($scope, Session) {
         $scope.player2,
         $scope.player3,
         $scope.player4);
-      $scope.sessions.push(newSession);
+//      $scope.sessions.push(newSession);
     }
     else {
       var oldSession = Session.getSession($scope.id);
