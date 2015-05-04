@@ -14,6 +14,12 @@ app.config(function ($routeProvider) {
       controller: 'GameController',
       templateUrl: 'partials/games.html'
     })
+    .when('/sessions/:idSession/newgame',
+    {
+      controller: 'GameController',
+      templateUrl: 'partials/newgame.html'
+    })
+
     .otherwise( { redirectTo: '/' });
 });
 

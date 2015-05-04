@@ -1,5 +1,6 @@
 app.factory("Game", function($http) {
 
+  var gameStore = [];
 
   var Game = function(id, session, type, nonplayers, won, tailor, black, runnings, shots) {
 
@@ -15,6 +16,17 @@ app.factory("Game", function($http) {
      var _type;
      var _session;
      var _id;
+     var _result = {
+      getGameType: function() { return _type; },
+      isWon: function() { return !_lost; },
+      isTailor: function() { return _tailor; },
+      isBlack: function() { return _black; },
+      getRunnings: function() { return _runnings; },
+      getShots: function() { return _shots; },
+      getSession: function() { return _session; },
+      id: function() { return _id; },
+      getValue: function() { return totalValue(); }
+     } 
 
      this.initialize = function() {
        var self = this;
@@ -47,19 +59,7 @@ app.factory("Game", function($http) {
 
      this.initialize();
 
-     return {
-      GAME_RUF: function() { return types[0]; },
-
-     	getGameType: function() { return _type; },
-      isWon: function() { return !_lost; },
-     	isTailor: function() { return _tailor; },
-      isBlack: function() { return _black; },
-      getRunnings: function() { return _runnings; },
-      getShots: function() { return _shots; },
-      getSession: function() { return _session; },
-     	id: function() { return _id; },
-      getValue: function() { return totalValue(); }
-     } 
+     return _result;
   };
 
   Game.AllTypes = [
