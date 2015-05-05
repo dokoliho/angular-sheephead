@@ -1,3 +1,5 @@
+"use strict";
+
 app.factory("Game", function($http) {
 
   var gameStore = [];
@@ -17,19 +19,18 @@ app.factory("Game", function($http) {
      var _session;
      var _id;
      var _result = {
-      getGameType: function() { return _type; },
-      isWon: function() { return !_lost; },
-      isTailor: function() { return _tailor; },
-      isBlack: function() { return _black; },
-      getRunnings: function() { return _runnings; },
-      getShots: function() { return _shots; },
-      getSession: function() { return _session; },
-      id: function() { return _id; },
-      getValue: function() { return totalValue(); }
-     } 
+       getGameType: function() { return _type; },
+       isWon: function() { return !_lost; },
+       isTailor: function() { return _tailor; },
+       isBlack: function() { return _black; },
+       getRunnings: function() { return _runnings; },
+       getShots: function() { return _shots; },
+       getSession: function() { return _session; },
+       id: function() { return _id; },
+       getValue: function() { return this.totalValue(); }
+     };
 
      this.initialize = function() {
-       var self = this;
        _nonplayers = nonplayers;
        _runnings = runnings;
        _black = black;
@@ -55,7 +56,8 @@ app.factory("Game", function($http) {
        }
        result *= _type.factor;
        return result * _type.nonPlayerCount;
-     }
+     };
+
 
      this.initialize();
 
@@ -111,7 +113,7 @@ app.factory("Game", function($http) {
       "doubleable" : true,
       "factor" : 4
     }
-  ]
+  ];
 
   return (Game);
 

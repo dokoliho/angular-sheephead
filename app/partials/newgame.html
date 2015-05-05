@@ -1,10 +1,8 @@
-<div class="dropdown">
-  <a class="btn btn-default" data-toggle="dropdown" href="#">{{ gameType }} <b class="caret"></b></a>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownType">
-    <li ng-repeat="type in gameTypes">
-      <a>{{type.name}}</a>
-    </li>
-  </ul>
+
+<h3>Neues Spiel</h3>
+<div class="form-group">
+      <label for="gType">Spieltyp:</label>
+      <select class="form-control" id="gType">
+        <option ng-repeat="type in gameTypes">{{type.name}}</option>
+      </select>
 </div>
-
-

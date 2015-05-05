@@ -1,3 +1,5 @@
+"use strict";
+
 app.factory("Session", function($http) {
 
   var sessionStore = [];
@@ -32,11 +34,11 @@ app.factory("Session", function($http) {
 
   Session.getSession = function(id) {
     return sessionStore[id-1];
-  }
+  };
 
   Session.getSessionStore = function() {
     return sessionStore;
-  }
+  };
 
   return (Session);
 

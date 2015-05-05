@@ -1,5 +1,6 @@
+"use strict";
 
-app.controller('SessionController', function($scope, Session) {
+app.controller("SessionController", function($scope, Session) {
   
   $scope.sessions =  Session.getSessionStore();
 
@@ -9,16 +10,15 @@ app.controller('SessionController', function($scope, Session) {
     $scope.player3 = "3";
     $scope.player4 = "4";
     $scope.id = null;
-  }
+  };
 
   $scope.write = function() {
     if ($scope.id === null) {
-      var newSession = new Session(
+      new Session(
         $scope.player1,
         $scope.player2,
         $scope.player3,
         $scope.player4);
-//      $scope.sessions.push(newSession);
     }
     else {
       var oldSession = Session.getSession($scope.id);
@@ -29,31 +29,17 @@ app.controller('SessionController', function($scope, Session) {
         $scope.player4);
     }
     reset();
-  }
+  };
 
   $scope.remove = function(session) {
     $scope.sessions.splice($scope.sessions.indexOf(session), 1);
-  }
+  };
 
   $scope.edit = function(session) {
-
-  }
+    console.log("Edit " + session.id());
+  };
 
   reset();
 
-})
+});
 
-
-app.controller('GameController', function($scope, $routeParams, Session, Game) {
-
-  $scope.session = Session.getSession($routeParams.idSession);
-  $scope.gameTypes = Game.AllTypes;
-  $scope.gameType = "Bitte wählen";
-
-  $scope.games =  [
-      { id: 1, session: 1, lead: [0], runnings: 0, factor: 1, won: true, kind: "SOLO" },
-      { id: 2, session: 1, lead: [1, 2], runnings: 1, factor: 1, won: true, kind: "RUF" }
-    ];
-  
-
-  })
