@@ -7,11 +7,11 @@
 </div>
 
 <table class="table top-buffer">
- 	<tr>
- 	  <th>Art</th>
- 	  <th ng-repeat="player in session.players()">{{player}}</th>
- 	</tr>
-  <tr ng-repeat="game in games | orderBy: id">
+ <tr>
+ 	<th>Art</th>
+ 	<th ng-repeat="player in session.players()">{{player}}</th>
+ </tr>
+  <tr ng-repeat="game in games | filter: sessionMatch | orderBy: id() ">
     <td>{{game.getGameType().name}}</td>
     <td ng-repeat="player in session.players()">{{player}}</td>
   </tr>

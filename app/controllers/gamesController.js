@@ -3,8 +3,15 @@
 app.controller("GameController", function($scope, $routeParams, Session, Game) {
 
   $scope.session = Session.getSession($routeParams.idSession);
+
   $scope.games =  Game.getGameStore();
   $scope.gameTypes = Game.AllTypes;
+  $scope.sessionMatch = function( game ) {
+ 	return game.getSession() === $scope.session; 	
+  };
+
+
+
 
   $scope.playersIds = [];
   $scope.allPlayer = [];
