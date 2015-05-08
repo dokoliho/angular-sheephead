@@ -1,11 +1,22 @@
 
 <h3>Neues Spiel</h3>
+
 <div class="form-group">
-      <label for="gType">Spieltyp:</label>
-      <select class="form-control" id="gType">
-        <option ng-repeat="type in gameTypes">{{type.name}}</option>
-      </select>
+      <label>Spieltyp:
+        <select ng-model="gameType" ng-options="type.name for type in gameTypes" 
+        class="form-control" ></select>
+  	  </label>
 </div>
+
+<div class="form-group">
+      <label>Spieler:
+		<div ng-dropdown-multiselect="" extra-settings="playerSettings" 
+		     translation-texts="playerCustomTexts"
+		     options="allPlayer" selected-model="playersIds"></div>
+  	  </label>
+</div>
+
+
 <div class="row top-buffer">
     <div class="col-sm-3">
       <a href="#/sessions/{{ session.id() }}" class="btn btn-default" role="button">Abbruch</a>

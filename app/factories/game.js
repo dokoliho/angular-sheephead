@@ -31,7 +31,8 @@ app.factory("Game", function($http) {
      };
 
      this.initialize = function() {
-       _nonplayers = session.players.filter(function(p) { return players.indexOf(p) == -1; });
+       _id = gameStore.length+1;
+       gameStore[_id-1] = _result;
        _runnings = runnings;
        _black = black;
        _tailor = tailor;
@@ -39,7 +40,9 @@ app.factory("Game", function($http) {
        _lost = !won;
        _type = type;
        _session = session;
-  	   _id = gameStore.length+1;
+       _nonplayers = session.players().filter(function(p) { 
+         return players.indexOf(p) == -1; 
+       });
      };
 
      this.totalValue = function() {
