@@ -9,6 +9,7 @@ app.factory("Session", function($http) {
   	 var _players = [];
   	 var _id = null;
   	 var _date = null;
+
      var _result = {
        players: function() { return _players; },
        updatePlayers: function(player1, player2, player3, player4) {

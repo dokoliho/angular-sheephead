@@ -31,9 +31,11 @@ app.controller("GameController", function($scope, $routeParams, Session, Game) {
  	return $scope.selectedIds.length === (4 - $scope.gameType.nonPlayerCount); 	
   };
 
-
-
-
+  $scope.totalValueForPlayer = function(id) {
+  	return $scope.games.reduce( function(previousValue, currentGame) {
+      return previousValue + currentGame.getValueForPlayerId(id);
+    }, 0);
+  };
 
   var reset = function() {
     $scope.gameType = $scope.gameTypes[0];
