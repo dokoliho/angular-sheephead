@@ -11,29 +11,36 @@ app.controller("GameController", function($scope, $routeParams, Session, Game) {
   };
 
 
+  
+  $scope.allPlayer = $scope.session.players().map (function(obj, index) {
+  	return {
+  		"id" : index,
+  		"label" : obj
+  	};
+  });
 
 
-  $scope.playersIds = [];
-  $scope.allPlayer = [];
-  for (var i = 0; i < $scope.session.players().length; i++) {
-  	$scope.allPlayer.push( {
-  		"id" : i,
-  		"label" : $scope.session.players()[i]
-  	});
-  }
   $scope.playerSettings = {
     smartButtonMaxItems: 3,
-    smartButtonTextConverter: function(itemText, originalItem) {
-        return itemText;
+    smartButtonTextConverter: function(itemText) {
+    	return itemText;
     }
-  }
-  $scope.playerCustomTexts = { buttonDefaultText: "Wer spielt?"}
+  };
+  $scope.playerCustomTexts = { buttonDefaultText: "Wer spielt?"};
+  $scope.isValidPlayerCount = function() {
+ 	return $scope.selectedIds.length === (4 - $scope.gameType.nonPlayerCount); 	
+  };
+
+
 
 
 
   var reset = function() {
     $scope.gameType = $scope.gameTypes[0];
-    $scope.players = [];
+    $scope.playerIds = [];
+    $scope.selectedIds = $scope.playerIds.map(function(obj) {
+  	  return { "id" : obj };
+  	});
     $scope.runnings = 0;
     $scope.black = false;
     $scope.tailor = false;
@@ -47,7 +54,7 @@ app.controller("GameController", function($scope, $routeParams, Session, Game) {
       new Game(
       	$scope.session,
       	$scope.gameType, 
-      	$scope.players, 
+      	$scope.playerIds, 
       	$scope.won, 
       	$scope.tailor, 
       	$scope.black, 
@@ -59,7 +66,7 @@ app.controller("GameController", function($scope, $routeParams, Session, Game) {
       oldGame.update(
         $scope.session,
       	$scope.gameType, 
-      	$scope.players, 
+      	$scope.playerIds, 
       	$scope.won, 
       	$scope.tailor, 
       	$scope.black, 

@@ -4,12 +4,12 @@ app.factory("Game", function($http) {
 
   var gameStore = [];
 
-  var Game = function(session, type, players, won, tailor, black, runnings, shots) {
+  var Game = function(session, type, playerIds, won, tailor, black, runnings, shots) {
 
      var BASE_VALUE = 10;
      var RUN_VALUE = 5;
 
-  	 var _nonplayers;
+  	 var _playerIds;
   	 var _runnings;
   	 var _black;
      var _tailor;
@@ -27,6 +27,7 @@ app.factory("Game", function($http) {
        getShots: function() { return _shots; },
        getSession: function() { return _session; },
        id: function() { return _id; },
+       getPlayerIds: function() { return _playerIds; },
        getValue: function() { return this.totalValue(); }
      };
 
@@ -40,9 +41,7 @@ app.factory("Game", function($http) {
        _lost = !won;
        _type = type;
        _session = session;
-       _nonplayers = session.players().filter(function(p) { 
-         return players.indexOf(p) == -1; 
-       });
+       _playerIds = playersIds;
      };
 
      this.totalValue = function() {
