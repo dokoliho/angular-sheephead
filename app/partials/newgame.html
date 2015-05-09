@@ -4,7 +4,7 @@
 <div class="form-group">
       <label>Spieltyp:
         <select ng-model="gameType" ng-options="type.name for type in gameTypes" 
-        class="form-control" ></select>
+        class="form-control col-sm-6" ></select>
   	  </label>
 </div>
 
@@ -17,12 +17,36 @@
 </div>
 
 <div class="form-group">
+      <label>Gewonnen?
+      	<input type="checkbox" ng-model="won" class="form-control">
+  	  </label>
+</div>
+
+<div class="form-group">
+      <label>Schneider?
+      	<input type="checkbox" ng-model="tailor" class="form-control">
+  	  </label>
+</div>
+
+<div class="form-group">
+      <label>Schwarz?
+      	<input type="checkbox" ng-model="black" class="form-control">
+  	  </label>
+</div>
+
+<div class="form-group">
       <label>Laufende:
     	<input type="number" name="input" ng-model="runnings"
            min="0" max="8" class="form-control" ng-disabled="!gameType.runnable">
       </label>
 </div>
 
+<div class="form-group">
+      <label>Spritzen:
+    	<input type="number" name="input" ng-model="shots"
+           min="0" max="8" class="form-control" ng-disabled="!gameType.doubleable">
+      </label>
+</div>
 
 
 <div class="row top-buffer">

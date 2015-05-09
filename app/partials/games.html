@@ -13,6 +13,6 @@
  </tr>
   <tr ng-repeat="game in games | filter: sessionMatch | orderBy: id() ">
     <td>{{game.getGameType().name}}</td>
-    <td ng-repeat="player in session.players()">{{player}}</td>
+    <td ng-repeat="player in session.players()">{{game.getValueForPlayerId($index)}}</td>
   </tr>
 </table>	

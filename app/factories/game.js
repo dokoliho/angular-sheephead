@@ -18,6 +18,36 @@ app.factory("Game", function($http) {
      var _type;
      var _session;
      var _id = null;
+
+     var totalValue = function() {
+       var resultingValue = _type.value * BASE_VALUE;
+       if (_type.doubleable) {
+         if (_tailor) resultingValue += BASE_VALUE;
+         if (_black) resultingValue += BASE_VALUE; 
+       }
+       if (_type.runnable) {
+         resultingValue += RUN_VALUE * _runnings; 
+       }
+       if (_type.doubleable) {
+         resultingValue *= (1 + shots);
+       }
+       resultingValue *= _type.factor;
+       return resultingValue * _type.nonPlayerCount;
+     };
+
+
+     var valueForPlayerId = function(playerId) {
+       var resultingValue = totalValue();
+       if (_playerIds.indexOf(playerId) === -1) 
+         resultingValue = -resultingValue / _type.nonPlayerCount;
+       else
+         resultingValue = resultingValue / (4 - _type.nonPlayerCount);
+       if (_lost) 
+         resultingValue = -resultingValue;
+       return resultingValue;
+     };
+
+
      var _result = {
        getGameType: function() { return _type; },
        isWon: function() { return !_lost; },
@@ -28,8 +58,10 @@ app.factory("Game", function($http) {
        getSession: function() { return _session; },
        id: function() { return _id; },
        getPlayerIds: function() { return _playerIds; },
-       getValue: function() { return this.totalValue(); }
+       getValue: function() { return totalValue(); },
+       getValueForPlayerId: function(id) { return valueForPlayerId(id); }
      };
+
 
      this.initialize = function() {
        _id = gameStore.length+1;
@@ -41,26 +73,13 @@ app.factory("Game", function($http) {
        _lost = !won;
        _type = type;
        _session = session;
-       _playerIds = playersIds;
+       _playerIds = playerIds;
      };
 
-     this.totalValue = function() {
-       var result = _type.value * BASE_VALUE;
-       if (_type.doubleable) {
-         if (_tailor) result += BASE_VALUE;
-         if (_black) result += BASE_VALUE; 
-       }
-       if (_type.runnable) {
-         result += RUN_VALUE * _runnings; 
-       }
-       if (_type.doubleable) {
-         result *= (1 + shots);
-       }
-       result *= _type.factor;
-       return result * _type.nonPlayerCount;
-     };
 
      this.initialize();
+
+
 
      return _result;
   };

@@ -45,11 +45,14 @@ app.controller("GameController", function($scope, $routeParams, Session, Game) {
     $scope.black = false;
     $scope.tailor = false;
     $scope.shots = 0;
-    $scope.lost = false;
+    $scope.won = true;
     $scope.id = null;
   };
 
  $scope.write = function() {
+ 	$scope.playerIds = $scope.selectedIds.map(function(obj) {
+ 		return obj.id;
+ 	});
     if ($scope.id === null) {
       new Game(
       	$scope.session,
