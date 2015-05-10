@@ -32,40 +32,37 @@
     <div class="col-sm-3">
     	<button class="btn btn-primary" ng-click="write()">Neuer Termin</button>
     </div>
-    <div class="col-sm-2">
-        <a class="larger" ng-click="toggleEdit()">
-          <i class="glyphicon glyphicon-cog"></i>
-        </a>
-    </div>
 </div>
 <div class="table top-buffer">
 	<table class="table table-striped">
     	<tbody>
         	  <tr class="row">
             	<th class="col-sm-2">Datum</th>
-              <th class="col-sm-10 justify-align">Spieler
-                <a class="larger" ng-click="toggleEdit()">
-                  <i class="glyphicon glyphicon-cog"></i>
-                </a>
-              </th>
+              <th class="col-sm-10">Spieler</th>
             </tr>
 
             <tr class="row" ng-repeat="session in sessions | orderBy: date" 
-                ng-show="!isButtonRow(session.id())" ng-swipe-left="setButtonRow(session.id())">
+                ng-swipe-left="setButtonRow(session.id())"
+                ng-mouseenter="setButtonRow(session.id())"
+                ng-swipe-right="resetButtonRow(session.id())"
+                ng-mouseleave="resetButtonRow(session.id())">
               <td class="col-sm-2">{{session.printDate()}}</td>
-              <td class="col-sm-10">{{session.printPlayers()}}</td>
-            </tr>
-
-            <tr class="row" ng-repeat="session in sessions | orderBy: date" 
-                ng-show="isButtonRow(session.id())" ng-swipe-right="resetButtonRow(session.id())">
-              <td class="col-sm-2">{{session.printDate()}}</td>
-              <td class="col-sm-10 right-align">
-                <button class="btn btn-default" 
-                  ng-click="goNext('/sessions/{{session.id()}}')">Bearbeiten</button>
-                <button class="btn btn-danger" ng-click="remove(session)">Löschen</button>
+              <td class="col-sm-10">
+                <ul>
+                  <li ng-show="!isButtonRow(session.id())"> 
+                    {{session.printPlayers()}} 
+                  </li>
+                  <li ng-show="isButtonRow(session.id())">
+                    nope
+                  </li>
+                  <li ng-show="isButtonRow(session.id())">
+                    <button class="btn btn-default" 
+                      ng-click="goNext('/sessions/{{session.id()}}')">Bearbeiten</button>
+                    <button class="btn btn-danger" ng-click="remove(session)">Löschen</button>
+                  </li>
+                </ul>
               </td>
             </tr>
-
      	</tbody>
    	</table>
 </div>

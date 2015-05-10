@@ -43,7 +43,15 @@ div.dk-multiselect:focus
    text-align: right;   
 }
 
-.table > tbody > tr > th a.larger {
-   font-size: 1.2em;
+.table > tbody > tr > td ul {
+    display: table;
+    width: 100%;
 }
 
+.table > tbody > tr > td li {
+    display: table-cell;
+}
+
+.table > tbody > tr > td li:last-child {
+    text-align: right;
+}
