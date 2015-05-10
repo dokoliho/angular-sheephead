@@ -37,8 +37,8 @@
 	<table class="table table-striped">
     	<tbody>
         	  <tr class="row">
-            	<th class="col-sm-2">Datum</th>
-              <th class="col-sm-10">Spieler</th>
+            	<th class="col-sm-2 col-xs-2">Datum</th>
+              <th class="col-sm-10 col-xs-10">Spieler</th>
             </tr>
 
             <tr class="row" ng-repeat="session in sessions | orderBy: date" 
@@ -47,18 +47,17 @@
                 ng-mouseenter="isButtonVisible=true"
                 ng-swipe-right="isButtonVisible=false"
                 ng-mouseleave="isButtonVisible=false">
-              <td class="col-sm-2">{{session.printDate()}}</td>
-              <td class="col-sm-10">
-                <ul>
-                  <li ng-show="!isButtonVisible"> 
-                    {{session.printPlayers()}} 
-                  </li>
-                  <li ng-show="isButtonVisible">
+              <td class="col-sm-2 col-xs-2">{{session.printDate()}}</td>
+              <td class="col-sm-10 col-xs-10">
+                <div style="position: relative">
+                  {{session.printPlayers()}}
+                  <div ng-show="isButtonVisible"
+                      style="position:absolute; width: 100%; text-align: right; top: -8px;">
                     <button class="btn btn-default" 
                       ng-click="goNext('/sessions/{{session.id()}}')">Bearbeiten</button>
                     <button class="btn btn-danger" ng-click="remove(session)">Löschen</button>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </td>
             </tr>
      	</tbody>
