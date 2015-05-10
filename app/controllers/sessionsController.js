@@ -6,25 +6,6 @@ app.controller("SessionController", function($scope, $location, Session) {
     $location.path(hash);
   };
 
-  var activeRows = [];
-  var editMode = false;
-  
-  $scope.isButtonRow = function(id) {
-    return editMode || (activeRows.indexOf(id) > -1);
-  };
-  $scope.setButtonRow = function(id) {
-    activeRows.push(id);
-  };
-  $scope.resetButtonRow = function(id) {
-    activeRows.splice(activeRows.indexOf(id), 1);
-  };
-  $scope.toggleEdit = function() {
-    editMode = !editMode;
-  };
-
-
-  $scope.showActions = true;
-
 
   $scope.sessions =  Session.getSessionStore();
 
