@@ -1,4 +1,4 @@
-<h3>Treffen</h3>
+<h3>Termine</h3>
 
 <div class="row">
 	<form class="" role="form">
@@ -30,27 +30,42 @@
 </div>
 <div class="row top-buffer">
     <div class="col-sm-3">
-    	<button class="btn btn-default" ng-click="write()">Hinzufügen</button>
+    	<button class="btn btn-primary" ng-click="write()">Neuer Termin</button>
+    </div>
+    <div class="col-sm-2">
+        <a class="larger" ng-click="toggleEdit()">
+          <i class="glyphicon glyphicon-cog"></i>
+        </a>
     </div>
 </div>
 <div class="table top-buffer">
 	<table class="table table-striped">
     	<tbody>
-        	<tr class="row">
+        	  <tr class="row">
             	<th class="col-sm-2">Datum</th>
-               	<th class="col-sm-8">Spieler</th>
-               	<th class="col-sm-2"></th>
+              <th class="col-sm-10 justify-align">Spieler
+                <a class="larger" ng-click="toggleEdit()">
+                  <i class="glyphicon glyphicon-cog"></i>
+                </a>
+              </th>
             </tr>
-          	<tr class="row" ng-repeat="session in sessions | orderBy: date">
-            	<td class="col-sm-2">{{session.printDate()}}</td>
-           		<td class="col-sm-8">{{session.printPlayers()}}</td>
-               	<td class="col-sm-2">
-               		<a class="" href="#/sessions/{{ session.id() }}">
-      				<i class="glyphicon glyphicon-pencil"></i></a>
-					<a class="" href="" ng-click="remove(session)">
-      				<i class="glyphicon glyphicon-remove"></i></a>
-      			</td>
-           	</tr>
+
+            <tr class="row" ng-repeat="session in sessions | orderBy: date" 
+                ng-show="!isButtonRow(session.id())" ng-swipe-left="setButtonRow(session.id())">
+              <td class="col-sm-2">{{session.printDate()}}</td>
+              <td class="col-sm-10">{{session.printPlayers()}}</td>
+            </tr>
+
+            <tr class="row" ng-repeat="session in sessions | orderBy: date" 
+                ng-show="isButtonRow(session.id())" ng-swipe-right="resetButtonRow(session.id())">
+              <td class="col-sm-2">{{session.printDate()}}</td>
+              <td class="col-sm-10 right-align">
+                <button class="btn btn-default" 
+                  ng-click="goNext('/sessions/{{session.id()}}')">Bearbeiten</button>
+                <button class="btn btn-danger" ng-click="remove(session)">Löschen</button>
+              </td>
+            </tr>
+
      	</tbody>
    	</table>
 </div>

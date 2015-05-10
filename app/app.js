@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('shApp', ['ngRoute', 'angularjs-dropdown-multiselect']);
+var app = angular.module('shApp', ['ngRoute', 'ngTouch', 'angularjs-dropdown-multiselect']);
 
 app.config(function ($routeProvider) {
   $routeProvider
